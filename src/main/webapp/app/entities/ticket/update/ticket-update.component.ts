@@ -8,6 +8,8 @@ import { TicketFormService, TicketFormGroup } from './ticket-form.service';
 import { ITicket } from '../ticket.model';
 import { TicketService } from '../service/ticket.service';
 import { EnumEtat } from 'app/entities/enumerations/enum-etat.model';
+import { ListDepartement } from 'app/entities/enumerations/list-departement.model';
+import { ListPriorite } from 'app/entities/enumerations/list-priorite.model';
 
 @Component({
   selector: 'jhi-ticket-update',
@@ -17,6 +19,8 @@ export class TicketUpdateComponent implements OnInit {
   isSaving = false;
   ticket: ITicket | null = null;
   enumEtatValues = Object.keys(EnumEtat);
+  listDepartementValues = Object.keys(ListDepartement);
+  listPrioriteValues = Object.keys(ListPriorite);
 
   editForm: TicketFormGroup = this.ticketFormService.createTicketFormGroup();
 

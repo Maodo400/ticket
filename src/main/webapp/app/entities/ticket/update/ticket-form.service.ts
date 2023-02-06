@@ -19,8 +19,11 @@ type TicketFormDefaults = Pick<NewTicket, 'id'>;
 type TicketFormGroupContent = {
   id: FormControl<ITicket['id'] | NewTicket['id']>;
   etat: FormControl<ITicket['etat']>;
+  objet: FormControl<ITicket['objet']>;
   email: FormControl<ITicket['email']>;
   demande: FormControl<ITicket['demande']>;
+  departement: FormControl<ITicket['departement']>;
+  priorite: FormControl<ITicket['priorite']>;
 };
 
 export type TicketFormGroup = FormGroup<TicketFormGroupContent>;
@@ -41,8 +44,11 @@ export class TicketFormService {
         }
       ),
       etat: new FormControl(ticketRawValue.etat),
+      objet: new FormControl(ticketRawValue.objet),
       email: new FormControl(ticketRawValue.email),
       demande: new FormControl(ticketRawValue.demande),
+      departement: new FormControl(ticketRawValue.departement),
+      priorite: new FormControl(ticketRawValue.priorite),
     });
   }
 

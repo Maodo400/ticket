@@ -22,6 +22,11 @@
         </div>
 
         <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ticketApp.ticket.objet" for="field_objet">Objet</label>
+          <input type="text" class="form-control" name="objet" id="field_objet" data-cy="objet" formControlName="objet" />
+        </div>
+
+        <div class="row mb-3">
           <label class="form-label" jhiTranslate="ticketApp.ticket.email" for="field_email">Email</label>
           <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
         </div>
@@ -29,6 +34,26 @@
         <div class="row mb-3">
           <label class="form-label" jhiTranslate="ticketApp.ticket.demande" for="field_demande">Demande</label>
           <input type="text" class="form-control" name="demande" id="field_demande" data-cy="demande" formControlName="demande" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ticketApp.ticket.departement" for="field_departement">Departement</label>
+          <select class="form-control" name="departement" formControlName="departement" id="field_departement" data-cy="departement">
+            <option [ngValue]="null">{{ 'ticketApp.ListDepartement.null' | translate }}</option>
+            <option *ngFor="let listDepartement of listDepartementValues" [value]="listDepartement">
+              {{ 'ticketApp.ListDepartement.' + listDepartement | translate }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="ticketApp.ticket.priorite" for="field_priorite">Priorite</label>
+          <select class="form-control" name="priorite" formControlName="priorite" id="field_priorite" data-cy="priorite">
+            <option [ngValue]="null">{{ 'ticketApp.ListPriorite.null' | translate }}</option>
+            <option *ngFor="let listPriorite of listPrioriteValues" [value]="listPriorite">
+              {{ 'ticketApp.ListPriorite.' + listPriorite | translate }}
+            </option>
+          </select>
         </div>
       </div>
 

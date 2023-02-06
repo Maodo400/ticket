@@ -19,8 +19,11 @@
       },
       "id": "ID",
       "etat": "Etat",
+      "objet": "Objet",
       "email": "Email",
-      "demande": "Demande"
+      "demande": "Demande",
+      "departement": "Departement",
+      "priorite": "Priorite"
     }
   }
 }

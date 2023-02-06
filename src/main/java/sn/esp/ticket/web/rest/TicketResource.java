@@ -83,6 +83,7 @@ public class TicketResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/tickets/{id}")
+    @PreAuthorize("hasAuthority(\"" + AuthoritiesConstants.SUPPORT + "\")")
     public ResponseEntity<Ticket> updateTicket(@PathVariable(value = "id", required = false) final Long id,
             @RequestBody Ticket ticket)
             throws URISyntaxException {
@@ -142,11 +143,20 @@ public class TicketResource {
                     if (ticket.getEtat() != null) {
                         existingTicket.setEtat(ticket.getEtat());
                     }
+                    if (ticket.getObjet() != null) {
+                        existingTicket.setObjet(ticket.getObjet());
+                    }
                     if (ticket.getEmail() != null) {
                         existingTicket.setEmail(ticket.getEmail());
                     }
                     if (ticket.getDemande() != null) {
                         existingTicket.setDemande(ticket.getDemande());
+                    }
+                    if (ticket.getDepartement() != null) {
+                        existingTicket.setDepartement(ticket.getDepartement());
+                    }
+                    if (ticket.getPriorite() != null) {
+                        existingTicket.setPriorite(ticket.getPriorite());
                     }
 
                     return existingTicket;

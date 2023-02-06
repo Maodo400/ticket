@@ -5,6 +5,8 @@ import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import sn.esp.ticket.domain.enumeration.EnumEtat;
+import sn.esp.ticket.domain.enumeration.ListDepartement;
+import sn.esp.ticket.domain.enumeration.ListPriorite;
 
 /**
  * A Ticket.
@@ -26,11 +28,22 @@ public class Ticket implements Serializable {
     @Column(name = "etat")
     private EnumEtat etat;
 
+    @Column(name = "objet")
+    private String objet;
+
     @Column(name = "email")
     private String email;
 
     @Column(name = "demande")
     private String demande;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "departement")
+    private ListDepartement departement;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "priorite")
+    private ListPriorite priorite;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -60,6 +73,19 @@ public class Ticket implements Serializable {
         this.etat = etat;
     }
 
+    public String getObjet() {
+        return this.objet;
+    }
+
+    public Ticket objet(String objet) {
+        this.setObjet(objet);
+        return this;
+    }
+
+    public void setObjet(String objet) {
+        this.objet = objet;
+    }
+
     public String getEmail() {
         return this.email;
     }
@@ -86,7 +112,34 @@ public class Ticket implements Serializable {
         this.demande = demande;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    public ListDepartement getDepartement() {
+        return this.departement;
+    }
+
+    public Ticket departement(ListDepartement departement) {
+        this.setDepartement(departement);
+        return this;
+    }
+
+    public void setDepartement(ListDepartement departement) {
+        this.departement = departement;
+    }
+
+    public ListPriorite getPriorite() {
+        return this.priorite;
+    }
+
+    public Ticket priorite(ListPriorite priorite) {
+        this.setPriorite(priorite);
+        return this;
+    }
+
+    public void setPriorite(ListPriorite priorite) {
+        this.priorite = priorite;
+    }
+
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
+    // setters here
 
     @Override
     public boolean equals(Object o) {
@@ -101,7 +154,8 @@ public class Ticket implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see
+        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
@@ -109,10 +163,13 @@ public class Ticket implements Serializable {
     @Override
     public String toString() {
         return "Ticket{" +
-            "id=" + getId() +
-            ", etat='" + getEtat() + "'" +
-            ", email='" + getEmail() + "'" +
-            ", demande='" + getDemande() + "'" +
-            "}";
+                "id=" + getId() +
+                ", etat='" + getEtat() + "'" +
+                ", objet='" + getObjet() + "'" +
+                ", email='" + getEmail() + "'" +
+                ", demande='" + getDemande() + "'" +
+                ", departement='" + getDepartement() + "'" +
+                ", priorite='" + getPriorite() + "'" +
+                "}";
     }
 }

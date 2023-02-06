@@ -21,8 +21,11 @@ describe('Ticket Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             etat: expect.any(Object),
+            objet: expect.any(Object),
             email: expect.any(Object),
             demande: expect.any(Object),
+            departement: expect.any(Object),
+            priorite: expect.any(Object),
           })
         );
       });
@@ -34,8 +37,11 @@ describe('Ticket Form Service', () => {
           expect.objectContaining({
             id: expect.any(Object),
             etat: expect.any(Object),
+            objet: expect.any(Object),
             email: expect.any(Object),
             demande: expect.any(Object),
+            departement: expect.any(Object),
+            priorite: expect.any(Object),
           })
         );
       });

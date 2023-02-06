@@ -11,12 +11,26 @@
       "fieldValues": "RECU,EN_COURS,EN_ATTENTE,NE_PAS_TRAITER,TERMINE,CLOTURE"
     },
     {
+      "fieldName": "objet",
+      "fieldType": "String"
+    },
+    {
       "fieldName": "email",
       "fieldType": "String"
     },
     {
       "fieldName": "demande",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "departement",
+      "fieldType": "ListDepartement",
+      "fieldValues": "SUPPORT_TECHNIQUE,SUPPORT_COMMERCIAL,SUPPORT_INCIDENT"
+    },
+    {
+      "fieldName": "priorite",
+      "fieldType": "ListPriorite",
+      "fieldValues": "FAIBLE,MOYENNE,HAUTE"
     }
   ],
   "fluentMethods": true,

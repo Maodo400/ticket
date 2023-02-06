@@ -20,6 +20,8 @@ import org.springframework.transaction.annotation.Transactional;
 import sn.esp.ticket.IntegrationTest;
 import sn.esp.ticket.domain.Ticket;
 import sn.esp.ticket.domain.enumeration.EnumEtat;
+import sn.esp.ticket.domain.enumeration.ListDepartement;
+import sn.esp.ticket.domain.enumeration.ListPriorite;
 import sn.esp.ticket.repository.TicketRepository;
 
 /**
@@ -33,11 +35,20 @@ class TicketResourceIT {
     private static final EnumEtat DEFAULT_ETAT = EnumEtat.RECU;
     private static final EnumEtat UPDATED_ETAT = EnumEtat.EN_COURS;
 
+    private static final String DEFAULT_OBJET = "AAAAAAAAAA";
+    private static final String UPDATED_OBJET = "BBBBBBBBBB";
+
     private static final String DEFAULT_EMAIL = "AAAAAAAAAA";
     private static final String UPDATED_EMAIL = "BBBBBBBBBB";
 
     private static final String DEFAULT_DEMANDE = "AAAAAAAAAA";
     private static final String UPDATED_DEMANDE = "BBBBBBBBBB";
+
+    private static final ListDepartement DEFAULT_DEPARTEMENT = ListDepartement.SUPPORT_TECHNIQUE;
+    private static final ListDepartement UPDATED_DEPARTEMENT = ListDepartement.SUPPORT_COMMERCIAL;
+
+    private static final ListPriorite DEFAULT_PRIORITE = ListPriorite.FAIBLE;
+    private static final ListPriorite UPDATED_PRIORITE = ListPriorite.MOYENNE;
 
     private static final String ENTITY_API_URL = "/api/tickets";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -63,7 +74,13 @@ class TicketResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Ticket createEntity(EntityManager em) {
-        Ticket ticket = new Ticket().etat(DEFAULT_ETAT).email(DEFAULT_EMAIL).demande(DEFAULT_DEMANDE);
+        Ticket ticket = new Ticket()
+            .etat(DEFAULT_ETAT)
+            .objet(DEFAULT_OBJET)
+            .email(DEFAULT_EMAIL)
+            .demande(DEFAULT_DEMANDE)
+            .departement(DEFAULT_DEPARTEMENT)
+            .priorite(DEFAULT_PRIORITE);
         return ticket;
     }
 
@@ -74,7 +91,13 @@ class TicketResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Ticket createUpdatedEntity(EntityManager em) {
-        Ticket ticket = new Ticket().etat(UPDATED_ETAT).email(UPDATED_EMAIL).demande(UPDATED_DEMANDE);
+        Ticket ticket = new Ticket()
+            .etat(UPDATED_ETAT)
+            .objet(UPDATED_OBJET)
+            .email(UPDATED_EMAIL)
+            .demande(UPDATED_DEMANDE)
+            .departement(UPDATED_DEPARTEMENT)
+            .priorite(UPDATED_PRIORITE);
         return ticket;
     }
 
@@ -97,8 +120,11 @@ class TicketResourceIT {
         assertThat(ticketList).hasSize(databaseSizeBeforeCreate + 1);
         Ticket testTicket = ticketList.get(ticketList.size() - 1);
         assertThat(testTicket.getEtat()).isEqualTo(DEFAULT_ETAT);
+        assertThat(testTicket.getObjet()).isEqualTo(DEFAULT_OBJET);
         assertThat(testTicket.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testTicket.getDemande()).isEqualTo(DEFAULT_DEMANDE);
+        assertThat(testTicket.getDepartement()).isEqualTo(DEFAULT_DEPARTEMENT);
+        assertThat(testTicket.getPriorite()).isEqualTo(DEFAULT_PRIORITE);
     }
 
     @Test
@@ -132,8 +158,11 @@ class TicketResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(ticket.getId().intValue())))
             .andExpect(jsonPath("$.[*].etat").value(hasItem(DEFAULT_ETAT.toString())))
+            .andExpect(jsonPath("$.[*].objet").value(hasItem(DEFAULT_OBJET)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].demande").value(hasItem(DEFAULT_DEMANDE)));
+            .andExpect(jsonPath("$.[*].demande").value(hasItem(DEFAULT_DEMANDE)))
+            .andExpect(jsonPath("$.[*].departement").value(hasItem(DEFAULT_DEPARTEMENT.toString())))
+            .andExpect(jsonPath("$.[*].priorite").value(hasItem(DEFAULT_PRIORITE.toString())));
     }
 
     @Test
@@ -149,8 +178,11 @@ class TicketResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(ticket.getId().intValue()))
             .andExpect(jsonPath("$.etat").value(DEFAULT_ETAT.toString()))
+            .andExpect(jsonPath("$.objet").value(DEFAULT_OBJET))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
-            .andExpect(jsonPath("$.demande").value(DEFAULT_DEMANDE));
+            .andExpect(jsonPath("$.demande").value(DEFAULT_DEMANDE))
+            .andExpect(jsonPath("$.departement").value(DEFAULT_DEPARTEMENT.toString()))
+            .andExpect(jsonPath("$.priorite").value(DEFAULT_PRIORITE.toString()));
     }
 
     @Test
@@ -172,7 +204,13 @@ class TicketResourceIT {
         Ticket updatedTicket = ticketRepository.findById(ticket.getId()).get();
         // Disconnect from session so that the updates on updatedTicket are not directly saved in db
         em.detach(updatedTicket);
-        updatedTicket.etat(UPDATED_ETAT).email(UPDATED_EMAIL).demande(UPDATED_DEMANDE);
+        updatedTicket
+            .etat(UPDATED_ETAT)
+            .objet(UPDATED_OBJET)
+            .email(UPDATED_EMAIL)
+            .demande(UPDATED_DEMANDE)
+            .departement(UPDATED_DEPARTEMENT)
+            .priorite(UPDATED_PRIORITE);
 
         restTicketMockMvc
             .perform(
@@ -187,8 +225,11 @@ class TicketResourceIT {
         assertThat(ticketList).hasSize(databaseSizeBeforeUpdate);
         Ticket testTicket = ticketList.get(ticketList.size() - 1);
         assertThat(testTicket.getEtat()).isEqualTo(UPDATED_ETAT);
+        assertThat(testTicket.getObjet()).isEqualTo(UPDATED_OBJET);
         assertThat(testTicket.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testTicket.getDemande()).isEqualTo(UPDATED_DEMANDE);
+        assertThat(testTicket.getDepartement()).isEqualTo(UPDATED_DEPARTEMENT);
+        assertThat(testTicket.getPriorite()).isEqualTo(UPDATED_PRIORITE);
     }
 
     @Test
@@ -259,7 +300,7 @@ class TicketResourceIT {
         Ticket partialUpdatedTicket = new Ticket();
         partialUpdatedTicket.setId(ticket.getId());
 
-        partialUpdatedTicket.demande(UPDATED_DEMANDE);
+        partialUpdatedTicket.email(UPDATED_EMAIL);
 
         restTicketMockMvc
             .perform(
@@ -274,8 +315,11 @@ class TicketResourceIT {
         assertThat(ticketList).hasSize(databaseSizeBeforeUpdate);
         Ticket testTicket = ticketList.get(ticketList.size() - 1);
         assertThat(testTicket.getEtat()).isEqualTo(DEFAULT_ETAT);
-        assertThat(testTicket.getEmail()).isEqualTo(DEFAULT_EMAIL);
-        assertThat(testTicket.getDemande()).isEqualTo(UPDATED_DEMANDE);
+        assertThat(testTicket.getObjet()).isEqualTo(DEFAULT_OBJET);
+        assertThat(testTicket.getEmail()).isEqualTo(UPDATED_EMAIL);
+        assertThat(testTicket.getDemande()).isEqualTo(DEFAULT_DEMANDE);
+        assertThat(testTicket.getDepartement()).isEqualTo(DEFAULT_DEPARTEMENT);
+        assertThat(testTicket.getPriorite()).isEqualTo(DEFAULT_PRIORITE);
     }
 
     @Test
@@ -290,7 +334,13 @@ class TicketResourceIT {
         Ticket partialUpdatedTicket = new Ticket();
         partialUpdatedTicket.setId(ticket.getId());
 
-        partialUpdatedTicket.etat(UPDATED_ETAT).email(UPDATED_EMAIL).demande(UPDATED_DEMANDE);
+        partialUpdatedTicket
+            .etat(UPDATED_ETAT)
+            .objet(UPDATED_OBJET)
+            .email(UPDATED_EMAIL)
+            .demande(UPDATED_DEMANDE)
+            .departement(UPDATED_DEPARTEMENT)
+            .priorite(UPDATED_PRIORITE);
 
         restTicketMockMvc
             .perform(
@@ -305,8 +355,11 @@ class TicketResourceIT {
         assertThat(ticketList).hasSize(databaseSizeBeforeUpdate);
         Ticket testTicket = ticketList.get(ticketList.size() - 1);
         assertThat(testTicket.getEtat()).isEqualTo(UPDATED_ETAT);
+        assertThat(testTicket.getObjet()).isEqualTo(UPDATED_OBJET);
         assertThat(testTicket.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testTicket.getDemande()).isEqualTo(UPDATED_DEMANDE);
+        assertThat(testTicket.getDepartement()).isEqualTo(UPDATED_DEPARTEMENT);
+        assertThat(testTicket.getPriorite()).isEqualTo(UPDATED_PRIORITE);
     }
 
     @Test

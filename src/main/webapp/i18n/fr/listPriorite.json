@@ -1,0 +1,10 @@
+{
+  "ticketApp": {
+    "ListPriorite": {
+      "null": "",
+      "FAIBLE": "FAIBLE",
+      "MOYENNE": "MOYENNE",
+      "HAUTE": "HAUTE"
+    }
+  }
+}

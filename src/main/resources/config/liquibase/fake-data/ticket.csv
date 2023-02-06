@@ -1,11 +1,11 @@
-id;etat;email;demande
-1;TERMINE;Germain42@yahoo.fr;SMTP Reactive Shoes
-2;EN_ATTENTE;Angilbe_Martin87@hotmail.fr;c
-3;EN_COURS;Lambert_Philippe@gmail.com;Norwegian executive interfaces
-4;EN_COURS;Camillien.Gaillard2@gmail.com;array
-5;EN_COURS;Richard92@yahoo.fr;e-commerce Toys
-6;RECU;Alose.Garnier@yahoo.fr;Investment archive
-7;EN_COURS;Alberte10@hotmail.fr;Investment quantify
-8;RECU;Anthelme.Olivier@yahoo.fr;Cotton Compatible
-9;TERMINE;Serge5@yahoo.fr;Small c
-10;TERMINE;Brunehaut47@hotmail.fr;generate systems Dollar
+id;etat;objet;email;demande;departement;priorite
+1;TERMINE;compress users;Jacqueline_Guerin4@hotmail.fr;Granite;SUPPORT_COMMERCIAL;HAUTE
+2;NE_PAS_TRAITER;Designer;Sylvain.Rodriguez9@gmail.com;withdrawal quantifying Plastic;SUPPORT_COMMERCIAL;FAIBLE
+3;EN_COURS;payment;Adrienne.Mercier33@yahoo.fr;ubiquitous;SUPPORT_TECHNIQUE;HAUTE
+4;EN_ATTENTE;Savings Alsace;Alose.Garnier@yahoo.fr;Investment archive;SUPPORT_TECHNIQUE;HAUTE
+5;RECU;Computer Investment quantify;Audebert_Rolland10@gmail.com;Cotton Compatible;SUPPORT_INCIDENT;MOYENNE
+6;CLOTURE;Balanced Small;Raphal_Bernard17@hotmail.fr;Multi-layered;SUPPORT_INCIDENT;MOYENNE
+7;EN_ATTENTE;payment expedite;Gustavine_Renaud22@gmail.com;24/365 Account;SUPPORT_INCIDENT;MOYENNE
+8;EN_ATTENTE;state Checking group;Alinor.Lambert8@yahoo.fr;Refined;SUPPORT_INCIDENT;HAUTE
+9;TERMINE;République;Sigebert75@gmail.com;virtual bluetooth XML;SUPPORT_COMMERCIAL;HAUTE
+10;CLOTURE;Baby;Clestine.Marie42@hotmail.fr;c Fantastic;SUPPORT_TECHNIQUE;FAIBLE

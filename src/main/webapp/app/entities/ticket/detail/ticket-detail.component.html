@@ -18,6 +18,10 @@
         <dd>
           <span jhiTranslate="{{ 'ticketApp.EnumEtat.' + ticket.etat }}">{{ ticket.etat }}</span>
         </dd>
+        <dt><span jhiTranslate="ticketApp.ticket.objet">Objet</span></dt>
+        <dd>
+          <span>{{ ticket.objet }}</span>
+        </dd>
         <dt><span jhiTranslate="ticketApp.ticket.email">Email</span></dt>
         <dd>
           <span>{{ ticket.email }}</span>
@@ -25,6 +29,14 @@
         <dt><span jhiTranslate="ticketApp.ticket.demande">Demande</span></dt>
         <dd>
           <span>{{ ticket.demande }}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.ticket.departement">Departement</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'ticketApp.ListDepartement.' + ticket.departement }}">{{ ticket.departement }}</span>
+        </dd>
+        <dt><span jhiTranslate="ticketApp.ticket.priorite">Priorite</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'ticketApp.ListPriorite.' + ticket.priorite }}">{{ ticket.priorite }}</span>
         </dd>
       </dl>
 

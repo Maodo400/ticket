@@ -9,11 +9,11 @@
       </button>
 
       <button
+      *jhiHasAnyAuthority="'ROLE_USER'"
         id="jh-create-entity"
         data-cy="entityCreateButton"
         class="btn btn-primary jh-create-entity create-ticket"
         [routerLink]="['/ticket/new']"
-        *jhiHasAnyAuthority="'ROLE_USER'"
       >
         <fa-icon icon="plus"></fa-icon>
         <span jhiTranslate="ticketApp.ticket.home.createLabel"> Créer un nouveau Ticket </span>
@@ -30,7 +30,8 @@
   </div>
 
   <div class="table-responsive table-entities" id="entities" *ngIf="tickets && tickets.length > 0">
-    <table class="table table-striped" aria-describedby="page-heading">
+    <table       *jhiHasAnyAuthority="'ROLE_SUPPORT'"
+    class="table table-striped" aria-describedby="page-heading">
       <thead>
         <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
           <th scope="col" jhiSortBy="id">
@@ -42,6 +43,12 @@
           <th scope="col" jhiSortBy="etat">
             <div class="d-flex">
               <span jhiTranslate="ticketApp.ticket.etat">Etat</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="objet">
+            <div class="d-flex">
+              <span jhiTranslate="ticketApp.ticket.objet">Objet</span>
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
@@ -57,6 +64,18 @@
               <fa-icon class="p-1" icon="sort"></fa-icon>
             </div>
           </th>
+          <th scope="col" jhiSortBy="departement">
+            <div class="d-flex">
+              <span jhiTranslate="ticketApp.ticket.departement">Departement</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="priorite">
+            <div class="d-flex">
+              <span jhiTranslate="ticketApp.ticket.priorite">Priorite</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -66,21 +85,26 @@
             <a [routerLink]="['/ticket', ticket.id, 'view']">{{ ticket.id }}</a>
           </td>
           <td jhiTranslate="{{ 'ticketApp.EnumEtat.' + ticket.etat }}">{{ ticket.etat }}</td>
+          <td>{{ ticket.objet }}</td>
           <td>{{ ticket.email }}</td>
           <td>{{ ticket.demande }}</td>
+          <td jhiTranslate="{{ 'ticketApp.ListDepartement.' + ticket.departement }}">{{ ticket.departement }}</td>
+          <td jhiTranslate="{{ 'ticketApp.ListPriorite.' + ticket.priorite }}">{{ ticket.priorite }}</td>
           <td class="text-end">
             <div class="btn-group">
-              <button type="submit" [routerLink]="['/ticket', ticket.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+              <button       *jhiHasAnyAuthority="'ROLE_SUPPORT'"
+              type="submit" [routerLink]="['/ticket', ticket.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
               </button>
 
-              <button *jhiHasAnyAuthority="'ROLE_SUPPORT'" type="submit" [routerLink]="['/ticket', ticket.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+              <button       *jhiHasAnyAuthority="'ROLE_SUPPORT'"
+              type="submit" [routerLink]="['/ticket', ticket.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
                 <fa-icon icon="pencil-alt"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
               </button>
 
-              <button *jhiHasAnyAuthority="'ROLE_ADMIN'" type="submit" (click)="delete(ticket)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+              <button       *jhiHasAnyAuthority="'ROLE_ADMIN'"              type="submit" (click)="delete(ticket)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
                 <fa-icon icon="times"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
               </button>
