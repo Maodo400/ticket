@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20230206144514",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "ticket",
+  "fields": [
+    {
+      "fieldName": "etat",
+      "fieldType": "EnumEtat",
+      "fieldValues": "RECU,EN_COURS,EN_ATTENTE,NE_PAS_TRAITER,TERMINE,CLOTURE"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "demande",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Ticket",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [],
+  "service": "no"
+}

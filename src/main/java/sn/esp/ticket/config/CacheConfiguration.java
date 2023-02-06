@@ -48,6 +48,7 @@ public class CacheConfiguration {
             createCache(cm, sn.esp.ticket.domain.User.class.getName());
             createCache(cm, sn.esp.ticket.domain.Authority.class.getName());
             createCache(cm, sn.esp.ticket.domain.User.class.getName() + ".authorities");
+            createCache(cm, sn.esp.ticket.domain.Ticket.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -31,11 +31,10 @@ public class SecurityConfiguration {
     private final SecurityProblemSupport problemSupport;
 
     public SecurityConfiguration(
-        TokenProvider tokenProvider,
-        CorsFilter corsFilter,
-        JHipsterProperties jHipsterProperties,
-        SecurityProblemSupport problemSupport
-    ) {
+            TokenProvider tokenProvider,
+            CorsFilter corsFilter,
+            JHipsterProperties jHipsterProperties,
+            SecurityProblemSupport problemSupport) {
         this.tokenProvider = tokenProvider;
         this.corsFilter = corsFilter;
         this.problemSupport = problemSupport;
