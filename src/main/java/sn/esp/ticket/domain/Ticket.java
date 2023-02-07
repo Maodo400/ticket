@@ -138,8 +138,7 @@ public class Ticket implements Serializable {
         this.priorite = priorite;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
-    // setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -154,8 +153,7 @@ public class Ticket implements Serializable {
 
     @Override
     public int hashCode() {
-        // see
-        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
@@ -163,13 +161,13 @@ public class Ticket implements Serializable {
     @Override
     public String toString() {
         return "Ticket{" +
-                "id=" + getId() +
-                ", etat='" + getEtat() + "'" +
-                ", objet='" + getObjet() + "'" +
-                ", email='" + getEmail() + "'" +
-                ", demande='" + getDemande() + "'" +
-                ", departement='" + getDepartement() + "'" +
-                ", priorite='" + getPriorite() + "'" +
-                "}";
+            "id=" + getId() +
+            ", etat='" + getEtat() + "'" +
+            ", objet='" + getObjet() + "'" +
+            ", email='" + getEmail() + "'" +
+            ", demande='" + getDemande() + "'" +
+            ", departement='" + getDepartement() + "'" +
+            ", priorite='" + getPriorite() + "'" +
+            "}";
     }
 }
